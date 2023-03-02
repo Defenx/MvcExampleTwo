@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Students</title>
+</head>
+<body>
+<header>Students List</header>
+<nav>
+    <a th:href="@{/}">Home</a>
+</nav>
+<section>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Performance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student:${studentDto.students}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.performance}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Duration</th>
+            <th>Size</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${studentDto.duration}"></td>
+            <td th:text="${studentDto.size}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<section>
+    <a th:href="@{/}">Upload new students</a>
+    <form method="post" th:action="@{/generateFile}" th:object="${fileStudentDto}">
+        <div>
+            <input type="hidden" th:field="*{duration}"/>
+            <input type="hidden" th:field="*{size}"/>
+        </div>
+        <button type="submit">save to file</button>
+    </form>
+</section>
+</body>
+</html>

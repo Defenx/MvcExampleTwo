@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Students</title>
+</head>
+<body>
+<header>Students List</header>
+<nav>
+    <a th:href="@{/}">Home</a>
+</nav>
+<section>
+    <div>
+        <h3>Upload file</h3>
+        <form method="post" th:action="@{/result}" enctype="multipart/form-data">
+            <div>
+                <input type="file" name="file" accept="text/csv">
+                <select name="sortingStrategyType">
+                    <option th:each="sortingStrategyType : ${sortingStrategyTypes}" th:value="${sortingStrategyType}"
+                            th:text="${sortingStrategyType.name}"></option>
+                </select>
+            </div>
+            <button type="submit">Upload file</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>
